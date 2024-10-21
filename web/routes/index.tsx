@@ -1,39 +1,60 @@
 import { Head } from "$fresh/runtime.ts";
-import { setCookie } from "$std/http/cookie.ts";
-import { Handlers } from "$fresh/server.ts";
+import { deleteCookie, setCookie } from "$std/http/cookie.ts";
+import { Handlers, type PageProps } from "$fresh/server.ts";
+
+const pathAndDomain = (req: Request) => (
+  { path: "/", domain: (new URL(req.url)).hostname }
+);
 
 export const handler: Handlers = {
+  GET(req, ctx) {
+    const message = (new URL(req.url)).searchParams.get('message')
+    console.log('message', message)
+    console.log('searchParams', Object.fromEntries((new URL(req.url)).searchParams))
+    return ctx.render({message})
+  },
+  DELETE(req) {
+    const headers = new Headers();
+    headers.set("hx-redirect", "/");
+    deleteCookie(headers, "auth", pathAndDomain(req));
+    return new Response(null, {
+      status: 200,
+      headers,
+    });
+  },
   async POST(req) {
-    const url = new URL(req.url);
-    const form = await req.formData();
-    // if (form.get("username") === "craft" && form.get("password") === "craft") {
-    if (true) {
+    const { username, password } = Object.fromEntries(await req.formData())
+    if (username == 'admin') {
       const headers = new Headers();
+      headers.set("location", "/app");
       setCookie(headers, {
         name: "auth",
         value: "bar", // this should be a unique value for each session
-        maxAge: 120,
+        maxAge: 60 * 60 * 24,
         sameSite: "Lax", // this is important to prevent CSRF attacks
-        domain: url.hostname,
-        path: "/",
         secure: true,
+        ...pathAndDomain(req)
       });
 
-      headers.set("location", "/app");
       console.log("signin successful");
       return new Response(null, {
         status: 303, // "See Other"
         headers,
       });
     } else {
+      const headers = new Headers();
+      headers.set("location", "/?message=INVALID_CREDENTIALS");
       return new Response(null, {
-        status: 403,
+        status: 303,
+        headers
       });
     }
   },
 };
 
-export default function Home() {
+type HomeProps = { message?: 'INVALID_CREDENTIALS' }
+export default function Home({data: { message }}: PageProps<HomeProps>) {
+  console.log('message', message)
   return (
     <>
       <Head>
@@ -49,32 +70,25 @@ export default function Home() {
           action="/"
           class=' class="mt-[200px] flex flex-col items-stretch gap-2.5 px-8 py-8 xpy-[14px] relative bg-white border w-[400px]"'
         >
-          <input type="text" name="username" value="username" />
+          <input type="text" name="username" value="admin" />
           <input type="password" name="password" value="password" />
           <button>Sign In</button>
+          { message ? <SigninMessage message={message}/> : ''}
         </form>
       </div>
     </>
   );
 
-  // const count = useSignal(3);
-  // return (
-  //   <div class="px-4 py-8 mx-auto bg-[#86efac]">
-  //     <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
-  //       <img
-  //         class="my-6"
-  //         src="/logo.svg"
-  //         width="128"
-  //         height="128"
-  //         alt="the Fresh logo: a sliced lemon dripping with juice"
-  //       />
-  //       <h1 class="text-4xl font-bold">Welcome to Fresh</h1>
-  //       <p class="my-4">
-  //         Try updating this message in the
-  //         <code class="mx-2">./routes/index.tsx</code> file, and refresh.
-  //       </p>
-  //       <Counter count={count} />
-  //     </div>
-  //   </div>
-  // );
+}
+
+const codeToHuman = {
+  INVALID_CREDENTIALS: 'Unauthorized credentials.'
+}
+
+const SigninMessage = ({message}: { message: keyof typeof codeToHuman}) => {
+  return (
+    <>
+    <div>{codeToHuman[message]}</div>
+    </>
+  )
 }

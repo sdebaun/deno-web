@@ -18,6 +18,7 @@ export const handler: Handlers = {
       },
       yaxis: [
         {
+          opposite: true,
           title: {
             text: "Signal Strength (dBm)",
           },
@@ -30,7 +31,7 @@ export const handler: Handlers = {
             text: "Wifi Latency (ms)",
           },
           forceNiceScale: true,
-          min: 50,
+          min: 30,
           max: 200,
         },
       ],

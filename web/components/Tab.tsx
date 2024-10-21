@@ -1,8 +1,4 @@
-import type { Component } from "https://esm.sh/stable/preact@10.22.0/denonext/preact.mjs";
 import type { FunctionalComponent } from "https://esm.sh/v128/preact@10.22.0/src/index.d.ts";
-import type { ComponentChild } from "https://esm.sh/v128/preact@10.22.0/src/index.d.ts";
-import type { ComponentType } from "https://esm.sh/v128/preact@10.22.0/src/index.js";
-import type { createElement } from "https://esm.sh/v128/preact@10.22.0/src/index.js";
 import type { ComponentChildren } from "https://esm.sh/v128/preact@10.22.0/src/index.js";
 import classnames from "npm:classnames";
 import type { IconProps } from "./Icon.tsx";

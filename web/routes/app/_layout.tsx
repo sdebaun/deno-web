@@ -1,4 +1,5 @@
 import { PageProps } from "$fresh/server.ts";
+import { Button } from "../../components/Button.tsx";
 import {
   IconChartBarSolid,
   IconCircleSolid,
@@ -36,6 +37,8 @@ function AppBar({ cls }: { cls?: string }) {
             <Tab cls="" Icon={IconChartBarSolid}>LAN</Tab>
             <Tab cls="" Icon={IconGlobeAltOutline}>WAN</Tab>
             <Tab cls="" Icon={IconCog6ToothSolid}>Admin</Tab>
+            <Button hx-delete="/api/auth/signin">Sign Out</Button>
+            {/* <button hx-delete="/api/auth/signin">Sign Out</button> */}
           </ul>
         </div>
       </div>
