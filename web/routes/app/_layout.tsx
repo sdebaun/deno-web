@@ -56,7 +56,7 @@ function AppBar({ cls }: { cls?: string }) {
   );
 }
 
-export default function Layout({ Component, state }: PageProps) {
+export default function Layout({ Component }: PageProps) {
   // state: if no authed user, kick them to the / (signin) route
   return (
     <div class="flex flex-row min-h-screen w-full bg-[#EFEFEF] font-sans">

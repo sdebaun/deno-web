@@ -8,6 +8,7 @@ import * as $app_Device from "./routes/app/Device.tsx";
 import * as $app_LAN from "./routes/app/LAN.tsx";
 import * as $app_WAN from "./routes/app/WAN.tsx";
 import * as $app_components_DashChart from "./routes/app/_components/DashChart.tsx";
+import * as $app_components_PageTItle from "./routes/app/_components/PageTItle.tsx";
 import * as $app_components_Panel from "./routes/app/_components/Panel.tsx";
 import * as $app_components_StatBlock from "./routes/app/_components/StatBlock.tsx";
 import * as $app_layout from "./routes/app/_layout.tsx";
@@ -32,6 +33,7 @@ const manifest = {
     "./routes/app/LAN.tsx": $app_LAN,
     "./routes/app/WAN.tsx": $app_WAN,
     "./routes/app/_components/DashChart.tsx": $app_components_DashChart,
+    "./routes/app/_components/PageTItle.tsx": $app_components_PageTItle,
     "./routes/app/_components/Panel.tsx": $app_components_Panel,
     "./routes/app/_components/StatBlock.tsx": $app_components_StatBlock,
     "./routes/app/_layout.tsx": $app_layout,

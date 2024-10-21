@@ -1,6 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import { deleteCookie, setCookie } from "$std/http/cookie.ts";
 import { Handlers, type PageProps } from "$fresh/server.ts";
+import { PageTitle } from "./app/_components/PageTItle.tsx";
 
 const pathAndDomain = (req: Request) => (
   { path: "/", domain: (new URL(req.url)).hostname }
@@ -22,7 +23,7 @@ export const handler: Handlers = {
     });
   },
   async POST(req) {
-    const { username, password } = Object.fromEntries(await req.formData())
+    const { username } = Object.fromEntries(await req.formData())
     if (username == 'admin') {
       const headers = new Headers({ 'location': '/app' });
       setCookie(headers, {
@@ -56,7 +57,8 @@ export default function Home({data: { message }}: PageProps<HomeProps>) {
   return (
     <>
       <Head>
-        <title>Sign In | Craft Command Center</title>
+        {/* <title>Sign In | Craft Command Center</title> */}
+        <PageTitle title='Sign In'/>
       </Head>
       <div class="flex-col justify-start items-stretch inline-flex w-full h-full gap-[120px]">
         <div class="flex flex-col items-center justify-start w-full gap-4 px-8 py-8">

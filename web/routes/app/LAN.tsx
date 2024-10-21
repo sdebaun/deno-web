@@ -15,8 +15,7 @@ export default function LAN() {
     <>
       <Panel
         id="LAN"
-        name="LAN"
-        headerChildren={<button>Disable Wifi</button>}
+        header={{ name: 'LAN', children: <button>Disable Wifi</button> }}
         hxGet="/app/LAN"
         hxTrigger="every 3s"
         hxSwap="outerHTML"

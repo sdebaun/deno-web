@@ -54,7 +54,7 @@ export const IconCpuChipSolid = ({ fill = "currentColor" }: IconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    fill="currentColor"
+    fill={fill}
     class="size-6"
   >
     <path d="M16.5 7.5h-9v9h9v-9Z" />

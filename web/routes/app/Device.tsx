@@ -15,8 +15,7 @@ export default function Device() {
     <>
       <Panel
         id="Device"
-        name="Device"
-        headerChildren={<button>Reboot System</button>}
+        header={{ name: 'Device', children: <button>Reboot System</button> }}
         hxGet="/app/Device"
         hxTrigger="every 3s"
         hxSwap="outerHTML"

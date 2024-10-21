@@ -1,11 +1,9 @@
 import classNames from "npm:classnames";
 import type { PropsWithCommon } from "../../../PropsWithCommon.ts";
-import type { ComponentChildren } from "https://esm.sh/v128/preact@10.22.0/src/index.js";
 import { IconCircleSolid } from "../../../components/Icon.tsx";
 
 type PanelProps =
-  & PropsWithCommon<{ headerChildren?: ComponentChildren }>
-  & PanelHeaderProps
+  & PropsWithCommon<{ header?: PanelHeaderProps }>
   & {
     hxGet?: string;
     hxTrigger?: string;
@@ -19,8 +17,7 @@ export const Panel = (
     children,
     cls,
     innerCls,
-    name,
-    headerChildren,
+    header,
     hxGet,
     hxTrigger,
     hxSwap,
@@ -33,8 +30,8 @@ export const Panel = (
     hx-trigger={hxTrigger}
     hx-swap={hxSwap}
   >
-    {name || headerChildren
-      ? <PanelHeader name={name}>{headerChildren}</PanelHeader>
+    {header && (header.name || header.children)
+      ? <PanelHeader name={header.name}>{header.children}</PanelHeader>
       : ""}
     <div
       class={classNames(

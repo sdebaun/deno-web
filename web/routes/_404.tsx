@@ -1,10 +1,12 @@
 import { Head } from "$fresh/runtime.ts";
+import { PageTitle } from "./app/_components/PageTItle.tsx";
 
 export default function Error404() {
   return (
     <>
       <Head>
-        <title>404 - Page not found</title>
+        {/* <title>404 - Page not found</title> */}
+        <PageTitle title='404 Not Found'/>
       </Head>
       <div class="px-4 py-8 mx-auto bg-[#86efac]">
         <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">

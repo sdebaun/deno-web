@@ -5,7 +5,7 @@ export default function App({ Component }: PageProps) {
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Page | Craft Command Center</title>
+        {/* <title>Page | Craft Command Center</title> */}
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://unpkg.com/htmx.org@latest" />
         <link rel="stylesheet" href="/styles.css" />

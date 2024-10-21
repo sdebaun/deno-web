@@ -15,8 +15,7 @@ export default function WAN() {
     <>
       <Panel
         id="WAN"
-        name="WAN"
-        headerChildren={<button>Reboot Modem</button>}
+        header={{ name: 'WAN', children: <button>Reboot Modem</button> }}
         hxGet="/app/WAN"
         hxTrigger="every 3s"
         hxSwap="outerHTML"
