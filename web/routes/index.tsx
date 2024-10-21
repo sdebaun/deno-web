@@ -14,8 +14,7 @@ export const handler: Handlers = {
     return ctx.render({message})
   },
   DELETE(req) {
-    const headers = new Headers();
-    headers.set("hx-redirect", "/");
+    const headers = new Headers({ 'hx-redirect': '/' });
     deleteCookie(headers, "auth", pathAndDomain(req));
     return new Response(null, {
       status: 200,
@@ -25,8 +24,7 @@ export const handler: Handlers = {
   async POST(req) {
     const { username, password } = Object.fromEntries(await req.formData())
     if (username == 'admin') {
-      const headers = new Headers();
-      headers.set("location", "/app");
+      const headers = new Headers({ 'location': '/app' });
       setCookie(headers, {
         name: "auth",
         value: "bar", // this should be a unique value for each session
@@ -43,7 +41,7 @@ export const handler: Handlers = {
       });
     } else {
       const headers = new Headers();
-      headers.set("location", "/?message=INVALID_CREDENTIALS");
+      headers.set("location", "/?message=UNAUTHORIZED_CREDENTIALS");
       return new Response(null, {
         status: 303,
         headers
@@ -52,7 +50,7 @@ export const handler: Handlers = {
   },
 };
 
-type HomeProps = { message?: 'INVALID_CREDENTIALS' }
+type HomeProps = { message?: keyof typeof codeToHuman }
 export default function Home({data: { message }}: PageProps<HomeProps>) {
   console.log('message', message)
   return (
@@ -82,7 +80,7 @@ export default function Home({data: { message }}: PageProps<HomeProps>) {
 }
 
 const codeToHuman = {
-  INVALID_CREDENTIALS: 'Unauthorized credentials.'
+  UNAUTHORIZED_CREDENTIALS: 'Unauthorized credentials.'
 }
 
 const SigninMessage = ({message}: { message: keyof typeof codeToHuman}) => {

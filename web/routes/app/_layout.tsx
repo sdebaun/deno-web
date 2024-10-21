@@ -37,7 +37,7 @@ function AppBar({ cls }: { cls?: string }) {
             <Tab cls="" Icon={IconChartBarSolid}>LAN</Tab>
             <Tab cls="" Icon={IconGlobeAltOutline}>WAN</Tab>
             <Tab cls="" Icon={IconCog6ToothSolid}>Admin</Tab>
-            <Button hx-delete="/api/auth/signin">Sign Out</Button>
+            <Button hx-delete="/">Sign Out</Button>
             {/* <button hx-delete="/api/auth/signin">Sign Out</button> */}
           </ul>
         </div>
