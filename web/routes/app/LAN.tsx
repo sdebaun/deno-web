@@ -9,15 +9,18 @@ export const config: RouteConfig = {
 };
 
 export default function LAN() {
-  const { clients, wifi, ethernet } = getLANData()
+  const { clients, wifi, ethernet } = getLANData();
 
   return (
     <>
-      <Panel id="LAN" name="LAN" headerChildren={<button>Disable Wifi</button>}
+      <Panel
+        id="LAN"
+        name="LAN"
+        headerChildren={<button>Disable Wifi</button>}
         hxGet="/app/LAN"
         hxTrigger="every 3s"
         hxSwap="outerHTML"
-        >
+      >
         <StatBlock name="Clients" pairs={clients} />
         <StatBlock name="Wifi" pairs={wifi} />
         <StatBlock name="Ethernet" pairs={ethernet} />

@@ -9,15 +9,18 @@ export const config: RouteConfig = {
 };
 
 export default function WAN() {
-  const { signalStrength, latency, packetLoss } =getWANData()
+  const { signalStrength, latency, packetLoss } = getWANData();
 
   return (
     <>
-      <Panel id="WAN" name="WAN" headerChildren={<button>Reboot Modem</button>}
+      <Panel
+        id="WAN"
+        name="WAN"
+        headerChildren={<button>Reboot Modem</button>}
         hxGet="/app/WAN"
         hxTrigger="every 3s"
         hxSwap="outerHTML"
-        >
+      >
         <StatBlock name="Signal Strength" pairs={signalStrength} />
         <StatBlock name="Latency" pairs={latency} />
         <StatBlock name="Packet Loss" pairs={packetLoss} />

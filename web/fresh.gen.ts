@@ -12,9 +12,12 @@ import * as $app_components_DashChart from "./routes/app/_components/DashChart.t
 import * as $app_components_Panel from "./routes/app/_components/Panel.tsx";
 import * as $app_components_StatBlock from "./routes/app/_components/StatBlock.tsx";
 import * as $app_layout from "./routes/app/_layout.tsx";
+import * as $app_providers_getChartSeries from "./routes/app/_providers/getChartSeries.ts";
 import * as $app_providers_getDeviceData from "./routes/app/_providers/getDeviceData.ts";
 import * as $app_providers_getLANData from "./routes/app/_providers/getLANData.ts";
 import * as $app_providers_getWANData from "./routes/app/_providers/getWANData.ts";
+import * as $app_chart_options from "./routes/app/chart/options.ts";
+import * as $app_chart_update from "./routes/app/chart/update.ts";
 import * as $app_index from "./routes/app/index.tsx";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
@@ -33,9 +36,12 @@ const manifest = {
     "./routes/app/_components/Panel.tsx": $app_components_Panel,
     "./routes/app/_components/StatBlock.tsx": $app_components_StatBlock,
     "./routes/app/_layout.tsx": $app_layout,
+    "./routes/app/_providers/getChartSeries.ts": $app_providers_getChartSeries,
     "./routes/app/_providers/getDeviceData.ts": $app_providers_getDeviceData,
     "./routes/app/_providers/getLANData.ts": $app_providers_getLANData,
     "./routes/app/_providers/getWANData.ts": $app_providers_getWANData,
+    "./routes/app/chart/options.ts": $app_chart_options,
+    "./routes/app/chart/update.ts": $app_chart_update,
     "./routes/app/index.tsx": $app_index,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
